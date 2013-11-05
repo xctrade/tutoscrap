@@ -8,9 +8,20 @@ import MySQLdb
 import json
 
 
-conn = MySQLdb.connect(host="localhost", user="74846319",passwd="",db="tuto_10")
+conn = MySQLdb.connect(host="localhost", user="xacpro",passwd="xc1980",db="tutorial")
 
+query = "INSERT INTO Tuto_10(symbol)  VALUES ('BDSP')"
+quer = "SELECT * FROM Tuto_10 "
 
+x = conn.cursor()
+x.execute(query)
+print "Number of rows inserted: %d" % x.rowcount
+conn.commit () # For Innodb, not for MyISAM - autocommit is disabled by default 
+row = x.fetchall()
+print str(row)
+#conn.close () unnecessary?
+
+"""
 #open a list of stockmarket symbols
 symbolslist = open("symbols.txt","r").read()
 symbolslist = symbolslist.split("\n") # for every new line, I have another item
@@ -31,3 +42,4 @@ for symbol in symbolslist:
 	for point in datapoints:
 		save_results.write (str(symbol) + "," + str(point[0])+ "," + str(point[1]) + "\n")
 	save_results.close()
+"""
